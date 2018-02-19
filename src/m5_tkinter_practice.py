@@ -2,8 +2,8 @@
 This project lets you try out Tkinter/Ttk and practice it!
 
 Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Phil Bissmeyer.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import tkinter
 from tkinter import ttk
@@ -12,37 +12,43 @@ from tkinter import ttk
 def main():
     """ Constructs a GUI with stuff on it. """
     # ------------------------------------------------------------------
-    # TODO: 2. After reading and understanding the m1e module,
+    # DONE: 2. After reading and understanding the m1e module,
     #   ** make a window that shows up. **
     # ------------------------------------------------------------------
-
+    root = tkinter.Tk()
     # ------------------------------------------------------------------
-    # TODO: 3. After reading and understanding the m2e module,
+    # DONE: 3. After reading and understanding the m2e module,
     #   ** put a Frame on the window. **
     # ------------------------------------------------------------------
-
+    frame1 = ttk.Frame(root, padding=50)
+    frame1.grid()
     # ------------------------------------------------------------------
-    # TODO: 4. After reading and understanding the m2e module,
+    # DONE: 4. After reading and understanding the m2e module,
     #   ** put a Button on the Frame. **
     # ------------------------------------------------------------------
-
+    button = ttk.Button(frame1, text='Its a button')
+    button.grid()
     # ------------------------------------------------------------------
-    # TODO: 5. After reading and understanding the m3e module,
+    # DONE: 5. After reading and understanding the m3e module,
     #   ** make your Button respond to a button-press **
     #   ** by printing   "Hello"  on the Console.     **
     # ------------------------------------------------------------------
-
+    button['command'] = (lambda: print('Hello'))
     # ------------------------------------------------------------------
-    # TODO: 6. After reading and understanding the m4e module,
+    # DONE: 6. After reading and understanding the m4e module,
     #   -- Put an Entry box on the Frame.
     #   -- Put a second Button on the Frame.
     #   -- Make this new Button, when pressed, print "Hello"
     #        on the Console if the current string in the Entry box
     #        is the string 'ok', but print "Goodbye" otherwise.
     # ------------------------------------------------------------------
-
+    entry_box = ttk.Entry(frame1)
+    entry_box.grid()
+    button2 = ttk.Button(frame1, text="ok?")
+    button2.grid()
+    button2['command'] = (lambda: do_stuff(entry_box.get()))
     # ------------------------------------------------------------------
-    # TODO: 7.
+    # DONE: 7.
     #    -- Put a second Entry on the Frame.
     #    -- Put a third Button on the frame.
     #    -- Make this new Button respond to a button-press as follows:
@@ -56,6 +62,11 @@ def main():
     #    that is a "user error" -- do NOT deal with that.
     #
     # ------------------------------------------------------------------
+    entry_box2 = ttk.Entry(frame1)
+    entry_box2.grid()
+    button3 = ttk.Button(frame1, text="print stuff")
+    button3.grid()
+    button3['command'] = (lambda: do_other_stuff(entry_box.get(), entry_box2.get()))
     ####################################################################
     # HINT:
     #   You will need to obtain the INTEGER from the STRING
@@ -64,12 +75,22 @@ def main():
     #      s = entry_box.get()
     #      n = int(s)
     ####################################################################
-
+    root.mainloop()
     # ------------------------------------------------------------------
-    # TODO: 8. As time permits, do other interesting GUI things!
+    # DONE: 8. As time permits, do other interesting GUI things!
     # ------------------------------------------------------------------
 
 
+def do_stuff(entry):
+    if entry == "ok":
+        print("Hello")
+    else:
+        print('Goodbye')
+
+
+def do_other_stuff(entry, entry2):
+    for i in range(int(entry2)):
+        print(entry)
 # ----------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
 # ----------------------------------------------------------------------
